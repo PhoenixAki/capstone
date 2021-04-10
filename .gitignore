@@ -1,0 +1,22 @@
+# Pycharm + cache stuff
+__pycache__/
+.idea/
+front/.parcel-cache/
+front/dist/
+
+# Don't want 1.3GB AI model on github
+checkpoint/
+
+# Don't want node dependencies (user installs this on their end)
+front/node_modules/
+
+# Don't need to include gpt2 model download (should be done on user's end)
+models/
+
+# Don't want huge virtual environment on github
+venv/
+
+# Don't need files relating to building the training dataset
+dataset_building.py
+post_ids.txt
+comments.txt
