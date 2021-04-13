@@ -1,7 +1,10 @@
 import gpt_2_simple as gpt2
+import tensorflow as tf
 
 
 class AIBot:
+    graph = tf.get_default_graph()
+
     def __init__(self):
         # gpt2.download_gpt2(model_name="355M")
         self.conversation = "Hello, my name is Sean. You are an AI model that I have trained."
@@ -10,8 +13,9 @@ class AIBot:
 
     def generate_reply(self, user_message):
         self.conversation += user_message
-        reply = gpt2.generate(self.sess, length=50, prefix=self.conversation, run_name='reddit-5000-steps-2',
-                              return_as_list=True)[0]
+        with self.graph.as_default():
+            reply = gpt2.generate(self.sess, length=25, prefix=self.conversation, run_name='reddit-5000-steps-2',
+                                  return_as_list=True)[0]
         reply = reply.replace(self.conversation, "").strip()
 
         if "." in reply:
