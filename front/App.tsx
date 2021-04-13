@@ -1,10 +1,9 @@
 import * as React from "react";
+import { css, cx } from "@emotion/css";
 
 import { useChatStore, sendMessage, ChatMessage } from "./ChatStore";
 
-const AUTHOR_NAME = "Sean";
-
-function Message(props: { message: ChatMessage }) {
+function Message(props: { message: ChatMessage; key: string }) {
   const { content, author } = props.message;
 
   return (
@@ -15,14 +14,23 @@ function Message(props: { message: ChatMessage }) {
 }
 
 export default function App() {
+  const [message, setMessage] = React.useState("");
+  const [username, setUsername] = React.useState("User");
   const messages = useChatStore((state) => state.messages);
 
-  function handleSendMessage(event: React.KeyboardEvent<HTMLInputElement>) {
-    const { key, target } = event;
-    if (key !== "Enter") return;
+  function handleUsernameInput(event: React.KeyboardEvent<HTMLInputElement>) {
+    setUsername(event.target.value);
+  }
 
-    const content = target.value;
-    sendMessage(content, AUTHOR_NAME);
+  function handleMessageInput(event: React.KeyboardEvent<HTMLInputElement>) {
+    setMessage(event.target.value);
+  }
+
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter") {
+      sendMessage(message, username);
+      setMessage("");
+    }
   }
 
   return (
@@ -30,8 +38,21 @@ export default function App() {
       {messages.map((message, index) => (
         <Message message={message} key={String(index)} />
       ))}
-
-      <input onKeyDown={handleSendMessage} placeholder="Type a message" />
+      <strong>Username: </strong>
+      <input
+        onChange={() => null}
+        onInput={handleUsernameInput}
+        value={username}
+        placeholder="Enter author name"
+      />
+      <strong>Message: </strong>
+      <input
+        onChange={() => null}
+        onKeyDown={handleKeyDown}
+        onInput={handleMessageInput}
+        value={message}
+        placeholder="Type a message"
+      />
     </div>
   );
 }
