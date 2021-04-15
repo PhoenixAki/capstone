@@ -1,38 +1,48 @@
 body {
-  padding: 0;
-  margin: 0;
-  background-color: rgb(35, 35, 35);
-}
-
-.navbar {
-  padding: 0;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: rgb(50, 50, 50);
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
+  margin: 0; /* Removes default 8px margins */
+  background-color: rgb(35, 35, 35); /* Darkest on page */
   color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+  font-size: 25px;
 }
 
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-  background-color: rgb(40, 40, 40);
+.navbar ul {
+  position: fixed; /* Keeps bar visible even if page is scrolled */
+  top: 0; /* Keeps navbar at top */
+  width: 100%; /* Take up entire width of top of page */
+  list-style-type: none; /* Removes markers */
+  margin: 0; /* Removes margin above */
+  padding: 0; /* Removes padding on left */
+  overflow: hidden; /* Unsure exactly, keeps the ul its own entity */
+  background-color: rgb(40, 40, 40); /* Lightest on page to allow in-betweens */
+}
+
+.navbar li {
+  float: left; /* Makes entries horizontal vs. vertical */
+}
+
+.navbar li:last-child {
+  float: right; /* Pushes last entry to right edge */
+}
+
+.navbar li a {
+  display: block; /* Gives space around each link */
+  color: white;
+  padding: 14px 16px; /* 14px top-bottom, 16px left-right */
+  text-decoration: none; /* Removes underline on link */
+  font-size: 25px;
+}
+
+.navbar li a:hover {
+  background-color: rgb(0, 125, 0);
 }
 
 .active {
-  background-color: rgb(40, 40, 40);
+  background-color: rgb(0, 125, 0); /* keep hover color when page is active */
+}
+
+#app-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-color: rgb(45, 45, 45);
 }

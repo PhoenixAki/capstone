@@ -6,7 +6,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-USE_BOT = True
+USE_BOT = False
 if USE_BOT:
     bot = AIBot()
 

@@ -45,6 +45,7 @@ export default function App() {
         value={username}
         placeholder="Enter author name"
       />
+      <br /><br />
       <strong>Message: </strong>
       <input
         onChange={() => null}
