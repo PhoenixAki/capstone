@@ -1,12 +1,22 @@
-body {
-  margin: 0; /* Removes default 8px margins */
-  background-color: rgb(35, 35, 35); /* Darkest on page */
-  color: white;
-  font-size: 25px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
-.navbar ul {
+body {
+  margin: 0; /* Removes default 8px margins */
+  background-color: rgb(0, 0, 0); /* Darkest on page */
+  color: white;
+  font-size: 25px;
+  height: 100%;
+  width: 100%;
+}
+
+#navbar {
   position: fixed; /* Keeps bar visible even if page is scrolled */
+  height: 56px;
   top: 0; /* Keeps navbar at top */
   width: 100%; /* Take up entire width of top of page */
   list-style-type: none; /* Removes markers */
@@ -16,15 +26,15 @@ body {
   background-color: rgb(40, 40, 40); /* Lightest on page to allow in-betweens */
 }
 
-.navbar li {
+#navbar li {
   float: left; /* Makes entries horizontal vs. vertical */
 }
 
-.navbar li:last-child {
+#navbar li:last-child {
   float: right; /* Pushes last entry to right edge */
 }
 
-.navbar li a {
+#navbar li a {
   display: block; /* Gives space around each link */
   color: white;
   padding: 14px 16px; /* 14px top-bottom, 16px left-right */
@@ -32,7 +42,7 @@ body {
   font-size: 25px;
 }
 
-.navbar li a:hover {
+#navbar li a:hover {
   background-color: rgb(0, 125, 0);
 }
 
@@ -41,8 +51,8 @@ body {
 }
 
 #app-container {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  background-color: rgb(45, 45, 45);
+  margin-top: 56px;
+  height: calc(100vh - 56px);
+  padding: 8px;
+  overflow-y: scroll;
 }
