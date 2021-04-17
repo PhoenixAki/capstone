@@ -1,39 +1,63 @@
 import * as React from "react";
 import { useChatStore, sendMessage, ChatMessage } from "./ChatStore";
 import { css } from "@emotion/css";
-
-function Message(props: { message: ChatMessage; key: string }) {
-  const { content, author } = props.message;
-
-  return (
-    <div>
-      <strong>[{author}]:</strong> {content}
-    </div>
-  );
-}
+import { setMessageInputColor, useSettingStore } from "./SettingStore";
 
 const styles = {
   container: css`
     display: flex;
     flex-direction: column;
+    height: 100%;
+  `,
+  messagesWrapper: css`
+    flex: 0 1 100%;
+    overflow-y: scroll;
+  `,
+  messageList: css`
     min-height: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: flex-end;
   `,
   message: css`
     flex: 0 0 auto;
   `,
-  messageInput: css`
-    position: sticky;
-    bottom: 0;
-    background-color: rgb(40, 40, 40);
+  messageInput: (color) => css`
+    background-color: rgb(${color});
   `,
 };
 
-const USERNAME = "Sean";
+function Message(props: { message: ChatMessage; key: string }) {
+  const { content, user } = props.message;
+
+  return (
+    <div className={styles.message}>
+      <strong>[{user}]:</strong> {content}
+    </div>
+  );
+}
 
 export default function Interact() {
   const [message, setMessage] = React.useState("");
-  const messages = useChatStore((state) => state.messages);
+  const messageListRef = React.useRef<HTMLDivElement>(null);
+
+  const [messages, waiting] = useChatStore((state) => [
+    state.messages,
+    state.waiting,
+  ]);
+  const [username, messageInputColor] = useSettingStore((state) => [
+    state.username,
+    state.messageInputColor,
+  ]);
+
+  React.useLayoutEffect(() => {
+    const container = messageListRef.current;
+    if (container == null) return;
+
+    requestAnimationFrame(() => {
+      container.scrollTop = Number.MAX_SAFE_INTEGER;
+    });
+  }, [messages]);
 
   function handleMessageInput(event: React.KeyboardEvent<HTMLInputElement>) {
     setMessage((event.target as HTMLInputElement).value);
@@ -41,19 +65,27 @@ export default function Interact() {
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter") {
-      sendMessage(message, USERNAME);
+      sendMessage(message, username);
       setMessage("");
+    }
+  }
+
+  function setColorThing(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter") {
+      setMessageInputColor((event.target as HTMLInputElement).value);
     }
   }
 
   return (
     <div className={styles.container}>
-      <div className={styles.message}>
-        {messages.map((message, index) => (
-          <Message message={message} key={String(index)} />
-        ))}
+      <div className={styles.messagesWrapper} ref={messageListRef}>
+        <div className={styles.messageList}>
+          {messages.map((message, index) => (
+            <Message message={message} key={String(index)} />
+          ))}
+        </div>
       </div>
-      <div className={styles.messageInput}>
+      <div className={styles.messageInput(messageInputColor)}>
         <strong>Message: </strong>
         <input
           onChange={() => null}
@@ -62,6 +94,7 @@ export default function Interact() {
           value={message}
           placeholder="Type a message"
         />
+        {waiting ? "Waiting for server..." : null}
       </div>
     </div>
   );

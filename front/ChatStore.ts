@@ -2,22 +2,28 @@ import create from "zustand";
 
 export type ChatMessage = {
   content: string;
-  author: string;
+  user: string;
 };
 
 type ChatStoreState = {
   messages: Array<ChatMessage>;
+  waiting: boolean;
 };
 
-const initialState: ChatStoreState = { messages: [] };
+const initialState: ChatStoreState = { messages: [], waiting: false };
 
 export const useChatStore = create(() => initialState);
 
-export function sendMessage(content: string, author: string, submitToServer: boolean = true) {
-  const newMessage = { content, author };
+export function sendMessage(
+  content: string,
+  user: string,
+  submitToServer: boolean = true
+) {
+  const newMessage = { content, user };
   const state = useChatStore.getState();
   useChatStore.setState({
     messages: [...state.messages, newMessage],
+    waiting: submitToServer,
   });
 
   if (submitToServer) {
@@ -33,7 +39,7 @@ export function requestChatResponse(message: ChatMessage) {
   })
     .then((response) => response.json())
     .then((body) => {
-      const { content, author } = body.response;
-      sendMessage(content, author, false);
+      const { content, user } = body.response;
+      sendMessage(content, user, false);
     });
 }

@@ -13,22 +13,22 @@ if USE_BOT:
 
 @app.route('/', methods=["POST"])
 @cross_origin()
-def test_post():
+def handle_post():
     if USE_BOT:
         reply = bot.generate_reply(request.json["message"]["content"])
         return {
             'response': {
                 'content': reply,
-                'author': "AI",
+                'user': "AI",
             },
         }
     else:
-        author = request.json["message"]["author"]
+        author = request.json["message"]["user"]
         reply = request.json["message"]["content"]
         return {
             'response': {
                 'content': f"Hello, {author}. You just said \"{reply}\".",
-                'author': "Server",
+                'user': "Server",
             },
     }
 

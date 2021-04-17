@@ -38,17 +38,32 @@ export default function Navbar() {
   return (
     <ul className={styles.navbar}>
       <li className={styles.li}>
-        <NavLink to={Routes.INTERACT} className={styles.link} activeClassName={styles.active} exact>
+        <NavLink
+          to={Routes.INTERACT}
+          className={styles.link}
+          activeClassName={styles.active}
+          exact
+        >
           Interact
         </NavLink>
       </li>
       <li className={styles.li}>
-        <NavLink to={Routes.SETTINGS} className={styles.link} activeClassName={styles.active} exact>
+        <NavLink
+          to={Routes.SETTINGS}
+          className={styles.link}
+          activeClassName={styles.active}
+          exact
+        >
           Settings
         </NavLink>
       </li>
       <li className={styles.li}>
-        <NavLink to={Routes.ABOUT} className={styles.link} activeClassName={styles.active} exact>
+        <NavLink
+          to={Routes.ABOUT}
+          className={styles.link}
+          activeClassName={styles.active}
+          exact
+        >
           About
         </NavLink>
       </li>
