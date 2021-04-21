@@ -1,10 +1,10 @@
 import * as React from "react";
-import { css } from "@emotion/css";
 import { Router, Route, Switch } from "react-router";
 import { createBrowserHistory } from "history";
+import { css } from "@emotion/css";
 const BrowserHistory = createBrowserHistory();
-import "./style.css";
 
+import "./style.css";
 import { Routes } from "./Constants";
 import Interact from "./Interact";
 import Settings from "./Settings";
@@ -13,7 +13,7 @@ import Navbar from "./Navbar";
 
 const styles = {
   mainContent: css`
-    padding-top: 56px;
+    padding-top: 70px;
     height: 100%;
   `,
 };

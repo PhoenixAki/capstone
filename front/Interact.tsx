@@ -1,7 +1,8 @@
 import * as React from "react";
-import { useChatStore, sendMessage, ChatMessage } from "./ChatStore";
 import { css } from "@emotion/css";
-import { setMessageInputColor, useSettingStore } from "./SettingStore";
+
+import { useChatStore, sendMessage, ChatMessage } from "./ChatStore";
+import { useSettingStore } from "./SettingStore";
 
 const styles = {
   container: css`
@@ -22,20 +23,17 @@ const styles = {
   message: css`
     flex: 0 0 auto;
   `,
-  inputWrapper: (color: string) => css`
-    height: 56px;
-    background-color: rgb(${color});
-    padding-left: 16px;
-    font-size: 45px;
+  inputArea: (navbarBackgroundColor: string) => css`
+    background-color: ${navbarBackgroundColor};
+    padding: 8px 16px;
     display: flex;
   `,
-  inputBox: css`
+  inputBox: (messageTextColor: string) => css`
     flex: 1;
     border: none;
-    font-size: 35px;
     background: transparent;
-    padding-left: 16px;
-    color: white;
+    padding-left: 8px;
+    color: ${messageTextColor};
     outline: none;
   `,
 };
@@ -58,9 +56,14 @@ export default function Interact() {
     state.messages,
     state.waiting,
   ]);
-  const [username, messageInputColor] = useSettingStore((state) => [
+  const [
+    username,
+    navbarBackgroundColor,
+    messageTextColor,
+  ] = useSettingStore((state) => [
     state.username,
-    state.messageInputColor,
+    state.navbarBackgroundColor,
+    state.messageTextColor,
   ]);
 
   React.useLayoutEffect(() => {
@@ -83,12 +86,6 @@ export default function Interact() {
     }
   }
 
-  function setColorThing(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === "Enter") {
-      setMessageInputColor((event.target as HTMLInputElement).value);
-    }
-  }
-
   return (
     <div className={styles.container}>
       <div className={styles.messagesWrapper} ref={messageListRef}>
@@ -99,10 +96,10 @@ export default function Interact() {
         </div>
         <span>{waiting ? "Waiting for server..." : null}</span>
       </div>
-      <div className={styles.inputWrapper(messageInputColor)}>
+      <div className={styles.inputArea(navbarBackgroundColor)}>
         <strong>{">"}</strong>
         <input
-          className={styles.inputBox}
+          className={styles.inputBox(messageTextColor)}
           onChange={() => null}
           onKeyDown={handleKeyDown}
           onInput={handleMessageInput}
