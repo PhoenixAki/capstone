@@ -8,13 +8,21 @@ import {
   setNavbarBackgroundColor,
   setNavbarHoverColor,
   setNavbarTextColor,
-  setMessageTextColor,
+  setBodyTextColor,
   setFontFamily,
 } from "./SettingStore";
 
 const styles = {
-  container: css``,
-  placeholder: css``,
+  setting: css`
+    padding: 8px 16px;
+  `,
+  list: (bodyTextColor: string) => css`
+    color: ${bodyTextColor};
+    background-color: rgb(50, 50, 50);
+    li:nth-child(odd) {
+      background-color: rgb(60, 60, 60);
+    }
+  `,
 };
 
 export default function Settings() {
@@ -24,7 +32,7 @@ export default function Settings() {
     navbarBackgroundColor,
     navbarHoverColor,
     navbarTextColor,
-    messageTextColor,
+    bodyTextColor,
     fontFamily,
   ] = useSettingStore((state) => [
     state.username,
@@ -32,7 +40,7 @@ export default function Settings() {
     state.navbarBackgroundColor,
     state.navbarHoverColor,
     state.navbarTextColor,
-    state.messageTextColor,
+    state.bodyTextColor,
     state.fontFamily,
   ]);
 
@@ -67,7 +75,7 @@ export default function Settings() {
   function handleMessageTextColorChange(
     event: React.ChangeEvent<HTMLInputElement>
   ) {
-    setMessageTextColor(event.target.value);
+    setBodyTextColor(event.target.value);
   }
 
   function handleFontFamilyChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -75,59 +83,59 @@ export default function Settings() {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.placeholder}>
-        Username: &nbsp;
+    <ul className={styles.list(bodyTextColor)}>
+      <li className={styles.setting}>
+        Username: &nbsp;{" "}
         <input type="text" value={username} onChange={handleUsernameChange} />
-      </div>
-      <div className={styles.placeholder}>
-        Body Background Color Picker
+      </li>
+      <li className={styles.setting}>
+        Body Background Color Picker: &nbsp;
         <input
           type="color"
           value={bodyBackgroundColor}
           onChange={handleBodyBackgroundColorChange}
         />
-      </div>
-      <div className={styles.placeholder}>
-        Navbar Background Color Picker
+      </li>
+      <li className={styles.setting}>
+        Navbar/Message Input Background Color Picker: &nbsp;
         <input
           type="color"
           value={navbarBackgroundColor}
           onChange={handleNavbarBackgroundColorChange}
         />
-      </div>
-      <div className={styles.placeholder}>
-        Navbar Hover Color Picker
+      </li>
+      <li className={styles.setting}>
+        Navbar Hover Color Picker: &nbsp;
         <input
           type="color"
           value={navbarHoverColor}
           onChange={handleNavbarHoverColorChange}
         />
-      </div>
-      <div className={styles.placeholder}>
-        Navbar Text Color Picker
+      </li>
+      <li className={styles.setting}>
+        Navbar/Message Input Text Color Picker: &nbsp;
         <input
           type="color"
           value={navbarTextColor}
           onChange={handleNavbarTextColorChange}
         />
-      </div>
-      <div className={styles.placeholder}>
-        Message Text Color Picker
+      </li>
+      <li className={styles.setting}>
+        Body Text Color Picker: &nbsp;
         <input
           type="color"
-          value={messageTextColor}
+          value={bodyTextColor}
           onChange={handleMessageTextColorChange}
         />
-      </div>
-      <div className={styles.placeholder}>
+      </li>
+      <li className={styles.setting}>
         Font Style: &nbsp;
         <input
           type="text"
           value={fontFamily}
           onChange={handleFontFamilyChange}
         />
-      </div>
-    </div>
+      </li>
+    </ul>
   );
 }

@@ -6,7 +6,7 @@ type SettingStoreState = {
   navbarBackgroundColor: string; //background color of the navbar and message input area
   navbarHoverColor: string; //color of navbar links when hovered over and active
   navbarTextColor: string; //color of text on navbar links
-  messageTextColor: string; //color of message text
+  bodyTextColor: string; //color of message text
   fontFamily: string; //text font across the pages
 };
 
@@ -16,7 +16,7 @@ const initialState: SettingStoreState = {
   navbarBackgroundColor: "#282828",
   navbarHoverColor: "#007D00",
   navbarTextColor: "#FFFFFF",
-  messageTextColor: "#FFFFFF",
+  bodyTextColor: "#FFFFFF",
   fontFamily: "sans-serif",
 };
 
@@ -42,8 +42,8 @@ export function setNavbarTextColor(color: string) {
   useSettingStore.setState({ navbarTextColor: color });
 }
 
-export function setMessageTextColor(color: string) {
-  useSettingStore.setState({ messageTextColor: color });
+export function setBodyTextColor(color: string) {
+  useSettingStore.setState({ bodyTextColor: color });
 }
 
 export function setFontFamily(font: string) {

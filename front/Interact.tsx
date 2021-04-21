@@ -14,7 +14,7 @@ const styles = {
     flex: 0 1 100%;
     overflow-y: scroll;
   `,
-  messageList: (messageTextColor) => css`
+  messageList: (messageTextColor: string) => css`
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -30,12 +30,15 @@ const styles = {
     display: flex;
   `,
   inputBox: (messageTextColor: string) => css`
-    flex: 1;
+    flex: 1 0 auto;
     border: none;
     background: transparent;
     padding-left: 8px;
     color: ${messageTextColor};
     outline: none;
+  `,
+  bodyText: (bodyTextColor: string) => css`
+    color: ${bodyTextColor};
   `,
 };
 
@@ -60,11 +63,13 @@ export default function Interact() {
   const [
     username,
     navbarBackgroundColor,
-    messageTextColor,
+    navbarTextColor,
+    bodyTextColor,
   ] = useSettingStore((state) => [
     state.username,
     state.navbarBackgroundColor,
-    state.messageTextColor,
+    state.navbarTextColor,
+    state.bodyTextColor,
   ]);
 
   React.useLayoutEffect(() => {
@@ -90,17 +95,19 @@ export default function Interact() {
   return (
     <div className={styles.container}>
       <div className={styles.messagesWrapper} ref={messageListRef}>
-        <div className={styles.messageList(messageTextColor)}>
+        <div className={styles.messageList(bodyTextColor)}>
           {messages.map((message, index) => (
             <Message message={message} key={String(index)} />
           ))}
         </div>
-        <span>{waiting ? "Waiting for server..." : null}</span>
+        <span className={styles.bodyText(bodyTextColor)}>
+          <strong>{waiting ? "Waiting for server..." : null}</strong>
+        </span>
       </div>
       <div className={styles.inputArea(navbarBackgroundColor)}>
-        <strong>{">"}</strong>
+        <strong className={styles.bodyText(bodyTextColor)}>{">"}</strong>
         <input
-          className={styles.inputBox(messageTextColor)}
+          className={styles.inputBox(navbarTextColor)}
           onChange={() => null}
           onKeyDown={handleKeyDown}
           onInput={handleMessageInput}

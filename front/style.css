@@ -8,7 +8,6 @@
 
 body {
   background-color: #000000; /* needs to be moved into React, to be replaced by colors picked by the user, default to #000000 */
-  color: #ffffff; /* needs to be moved into React, to be replaced by colors picked by the user, default to #FFFFFF */
   height: 100%;
   width: 100%;
 }
