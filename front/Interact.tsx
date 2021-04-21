@@ -22,8 +22,21 @@ const styles = {
   message: css`
     flex: 0 0 auto;
   `,
-  messageInput: (color) => css`
+  inputWrapper: (color: string) => css`
+    height: 56px;
     background-color: rgb(${color});
+    padding-left: 16px;
+    font-size: 45px;
+    display: flex;
+  `,
+  inputBox: css`
+    flex: 1;
+    border: none;
+    font-size: 35px;
+    background: transparent;
+    padding-left: 16px;
+    color: white;
+    outline: none;
   `,
 };
 
@@ -84,17 +97,18 @@ export default function Interact() {
             <Message message={message} key={String(index)} />
           ))}
         </div>
+        <span>{waiting ? "Waiting for server..." : null}</span>
       </div>
-      <div className={styles.messageInput(messageInputColor)}>
-        <strong>Message: </strong>
+      <div className={styles.inputWrapper(messageInputColor)}>
+        <strong>{">"}</strong>
         <input
+          className={styles.inputBox}
           onChange={() => null}
           onKeyDown={handleKeyDown}
           onInput={handleMessageInput}
           value={message}
-          placeholder="Type a message"
+          placeholder="Type a message..."
         />
-        {waiting ? "Waiting for server..." : null}
       </div>
     </div>
   );
