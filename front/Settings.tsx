@@ -49,29 +49,29 @@ export default function Settings() {
   function handleNavbarBackgroundColorChange(
     event: React.ChangeEvent<HTMLInputElement>
   ) {
-    setNavbarBackgroundColor(navbarBackgroundColor);
+    setNavbarBackgroundColor(event.target.value);
   }
 
   function handleNavbarHoverColorChange(
     event: React.ChangeEvent<HTMLInputElement>
   ) {
-    setNavbarHoverColor(navbarHoverColor);
+    setNavbarHoverColor(event.target.value);
   }
 
   function handleNavbarTextColorChange(
     event: React.ChangeEvent<HTMLInputElement>
   ) {
-    setNavbarTextColor(navbarTextColor);
+    setNavbarTextColor(event.target.value);
   }
 
   function handleMessageTextColorChange(
     event: React.ChangeEvent<HTMLInputElement>
   ) {
-    setMessageTextColor(messageTextColor);
+    setMessageTextColor(event.target.value);
   }
 
   function handleFontFamilyChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setFontFamily(fontFamily);
+    setFontFamily(event.target.value);
   }
 
   return (

@@ -14,11 +14,12 @@ const styles = {
     flex: 0 1 100%;
     overflow-y: scroll;
   `,
-  messageList: css`
+  messageList: (messageTextColor) => css`
     min-height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    color: ${messageTextColor};
   `,
   message: css`
     flex: 0 0 auto;
@@ -89,7 +90,7 @@ export default function Interact() {
   return (
     <div className={styles.container}>
       <div className={styles.messagesWrapper} ref={messageListRef}>
-        <div className={styles.messageList}>
+        <div className={styles.messageList(messageTextColor)}>
           {messages.map((message, index) => (
             <Message message={message} key={String(index)} />
           ))}
