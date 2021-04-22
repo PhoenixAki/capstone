@@ -8,7 +8,7 @@ import { useSettingStore } from "./SettingStore";
 const styles = {
   navbar: (navbarBackgroundColor: string) => css`
     position: fixed; /* Keeps bar visible even if page is scrolled */
-    height: 70px;
+    height: 68px;
     top: 0; /* Keeps navbar at top */
     width: 100%; /* Take up entire width of top of page */
     list-style-type: none; /* Removes markers */
@@ -35,11 +35,7 @@ const styles = {
 };
 
 export default function Navbar() {
-  const [
-    navbarBackgroundColor,
-    navbarHoverColor,
-    navbarTextColor,
-  ] = useSettingStore((state) => [
+  const [navbarBackgroundColor, navbarHoverColor, navbarTextColor] = useSettingStore((state) => [
     state.navbarBackgroundColor,
     state.navbarHoverColor,
     state.navbarTextColor,
@@ -52,8 +48,7 @@ export default function Navbar() {
           to={Routes.INTERACT}
           className={styles.link(navbarHoverColor, navbarTextColor)}
           activeClassName={styles.active(navbarHoverColor)}
-          exact
-        >
+          exact>
           Interact
         </NavLink>
       </li>
@@ -62,8 +57,7 @@ export default function Navbar() {
           to={Routes.SETTINGS}
           className={styles.link(navbarHoverColor, navbarTextColor)}
           activeClassName={styles.active(navbarHoverColor)}
-          exact
-        >
+          exact>
           Settings
         </NavLink>
       </li>
@@ -72,8 +66,7 @@ export default function Navbar() {
           to={Routes.ABOUT}
           className={styles.link(navbarHoverColor, navbarTextColor)}
           activeClassName={styles.active(navbarHoverColor)}
-          exact
-        >
+          exact>
           About
         </NavLink>
       </li>

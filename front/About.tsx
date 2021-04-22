@@ -11,7 +11,5 @@ const styles = {
 
 export default function About() {
   const [bodyTextColor] = useSettingStore((state) => [state.bodyTextColor]);
-  return (
-    <div className={styles.bodyText(bodyTextColor)}>About Placeholder</div>
-  );
+  return <div className={styles.bodyText(bodyTextColor)}>About Placeholder</div>;
 }

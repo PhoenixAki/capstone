@@ -56,10 +56,7 @@ export default function Interact() {
   const [message, setMessage] = React.useState("");
   const messageListRef = React.useRef<HTMLDivElement>(null);
 
-  const [messages, waiting] = useChatStore((state) => [
-    state.messages,
-    state.waiting,
-  ]);
+  const [messages, waiting] = useChatStore((state) => [state.messages, state.waiting]);
   const [
     username,
     navbarBackgroundColor,

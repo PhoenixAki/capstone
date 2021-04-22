@@ -14,11 +14,7 @@ const initialState: ChatStoreState = { messages: [], waiting: false };
 
 export const useChatStore = create(() => initialState);
 
-export function sendMessage(
-  content: string,
-  user: string,
-  submitToServer: boolean = true
-) {
+export function sendMessage(content: string, user: string, submitToServer: boolean = true) {
   const newMessage = { content, user };
   const state = useChatStore.getState();
   useChatStore.setState({

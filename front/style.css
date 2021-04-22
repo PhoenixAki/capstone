@@ -2,12 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif; /* needs to be moved into React, to be specified by the user, no guarantee that sizing and spacing will work with other fonts though */
-  font-size: 35px; /* needs to be moved into React, to be replaced by colors picked by the user, default to 35px */
+  font-size: 35px;
 }
 
 body {
-  background-color: #000000; /* needs to be moved into React, to be replaced by colors picked by the user, default to #000000 */
   height: 100%;
   width: 100%;
 }
