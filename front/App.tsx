@@ -29,6 +29,7 @@ export default function App() {
     state.bodyBackgroundColor,
     state.fontFamily,
   ]);
+
   return (
     <Router history={BrowserHistory}>
       <Helmet>

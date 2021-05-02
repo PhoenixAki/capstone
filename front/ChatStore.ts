@@ -3,6 +3,7 @@ import create from "zustand";
 export type ChatMessage = {
   content: string;
   user: string;
+  echoReply: boolean;
 };
 
 type ChatStoreState = {
@@ -14,8 +15,13 @@ const initialState: ChatStoreState = { messages: [], waiting: false };
 
 export const useChatStore = create(() => initialState);
 
-export function sendMessage(content: string, user: string, submitToServer: boolean = true) {
-  const newMessage = { content, user };
+export function sendMessage(
+  content: string,
+  user: string,
+  echoReply: boolean,
+  submitToServer: boolean = true,
+) {
+  const newMessage = { content, user, echoReply };
   const state = useChatStore.getState();
   useChatStore.setState({
     messages: [...state.messages, newMessage],
@@ -35,7 +41,7 @@ export function requestChatResponse(message: ChatMessage) {
   })
     .then((response) => response.json())
     .then((body) => {
-      const { content, user } = body.response;
-      sendMessage(content, user, false);
+      const { content, user, echoReply } = body.response;
+      sendMessage(content, user, echoReply, false);
     });
 }

@@ -7,12 +7,17 @@ import { useSettingStore } from "./SettingStore";
 
 const styles = {
   navbar: (navbarBackgroundColor: string) => css`
-    position: fixed; /* Keeps bar visible even if page is scrolled */
+    position: fixed; /* Keeps bar up top */
     height: 68px;
-    top: 0; /* Keeps navbar at top */
-    width: 100%; /* Take up entire width of top of page */
+    width: 100%; /* Take up entire width of page */
     list-style-type: none; /* Removes markers */
-    background-color: ${navbarBackgroundColor};
+    background-color: ${navbarBackgroundColor}; /* Dynamically update with the setting */
+  `,
+  li: css`
+    float: left; /* Makes entries horizontal vs. vertical */
+    &:last-child {
+      float: right; /* Pushes last child to right edge */
+    }
   `,
   link: (navbarHoverColor: string, navbarTextColor: string) => css`
     display: block; /* Gives space around each link */
@@ -21,12 +26,6 @@ const styles = {
     text-decoration: none; /* Removes underline on link */
     &:hover {
       background-color: ${navbarHoverColor};
-    }
-  `,
-  li: css`
-    float: left; /* Makes entries horizontal vs. vertical */
-    &:last-child {
-      float: right; /* Pushes last entry to right edge */
     }
   `,
   active: (navbarHoverColor: string) => css`

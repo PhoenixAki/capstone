@@ -10,6 +10,7 @@ import {
   setNavbarTextColor,
   setBodyTextColor,
   setFontFamily,
+  setEchoReply,
 } from "./SettingStore";
 
 const styles = {
@@ -33,15 +34,23 @@ type SettingProps = {
   label: string;
   type: string;
   value: string;
-  onChange: (value: string) => unknown;
+  onChange: (value: any) => unknown;
+  echoReply: boolean;
 };
 
 function Setting(props: SettingProps) {
-  const { label, type, value, onChange } = props;
+  const { label, type, value, onChange, echoReply } = props;
   return (
     <li className={styles.setting}>
       <span className={styles.settingLabel}>{label}:</span>
-      <input type={type} value={value} onChange={(event) => onChange(event.target.value)} />
+      <input
+        type={type}
+        value={value}
+        onChange={(event) =>
+          onChange(type == "checkbox" ? event.target.checked : event.target.value)
+        }
+        checked={echoReply}
+      />
     </li>
   );
 }
@@ -55,6 +64,7 @@ export default function Settings() {
     navbarTextColor,
     bodyTextColor,
     fontFamily,
+    echoReply,
   ] = useSettingStore((state) => [
     state.username,
     state.bodyBackgroundColor,
@@ -63,42 +73,67 @@ export default function Settings() {
     state.navbarTextColor,
     state.bodyTextColor,
     state.fontFamily,
+    state.echoReply,
   ]);
 
   return (
     <ul className={styles.list(bodyTextColor)}>
-      <Setting type="text" value={username} label="Username" onChange={setUsername} />
+      <Setting
+        type="text"
+        value={username}
+        label="Username"
+        onChange={setUsername}
+        echoReply={false}
+      />
       <Setting
         type="color"
         value={bodyBackgroundColor}
         label="Body Background Color Picker"
         onChange={setBodyBackgroundColor}
+        echoReply={false}
       />
       <Setting
         type="color"
         value={navbarBackgroundColor}
         label="Navbar/Message Input Background Color Picker"
         onChange={setNavbarBackgroundColor}
+        echoReply={false}
       />
       <Setting
         type="color"
         value={navbarHoverColor}
         label="Navbar Hover Color Picker"
         onChange={setNavbarHoverColor}
+        echoReply={false}
       />
       <Setting
         type="color"
         value={navbarTextColor}
         label="Navbar Text Color Picker"
         onChange={setNavbarTextColor}
+        echoReply={false}
       />
       <Setting
         type="color"
         value={bodyTextColor}
         label="Body Text Color Picker"
         onChange={setBodyTextColor}
+        echoReply={false}
       />
-      <Setting type="text" value={fontFamily} label="Font Family" onChange={setFontFamily} />
+      <Setting
+        type="text"
+        value={fontFamily}
+        label="Font Family"
+        onChange={setFontFamily}
+        echoReply={false}
+      />
+      <Setting
+        type="checkbox"
+        value=""
+        label="Server Echo Replies?"
+        onChange={setEchoReply}
+        echoReply={echoReply}
+      />
     </ul>
   );
 }

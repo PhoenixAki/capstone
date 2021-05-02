@@ -8,6 +8,7 @@ type SettingStoreState = {
   navbarTextColor: string; //color of text on navbar links
   bodyTextColor: string; //color of message text
   fontFamily: string; //text font across the pages
+  echoReply: boolean;
 };
 
 const initialState: SettingStoreState = {
@@ -18,6 +19,7 @@ const initialState: SettingStoreState = {
   navbarTextColor: "#FFFFFF",
   bodyTextColor: "#FFFFFF",
   fontFamily: "sans-serif",
+  echoReply: false,
 };
 
 export const useSettingStore = create(() => initialState);
@@ -48,4 +50,8 @@ export function setBodyTextColor(color: string) {
 
 export function setFontFamily(font: string) {
   useSettingStore.setState({ fontFamily: font });
+}
+
+export function setEchoReply(echo: boolean) {
+  useSettingStore.setState({ echoReply: echo });
 }

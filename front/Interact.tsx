@@ -62,11 +62,13 @@ export default function Interact() {
     navbarBackgroundColor,
     navbarTextColor,
     bodyTextColor,
+    echoReply,
   ] = useSettingStore((state) => [
     state.username,
     state.navbarBackgroundColor,
     state.navbarTextColor,
     state.bodyTextColor,
+    state.echoReply,
   ]);
 
   React.useLayoutEffect(() => {
@@ -84,7 +86,7 @@ export default function Interact() {
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter") {
-      sendMessage(message, username);
+      sendMessage(message, username, echoReply);
       setMessage("");
     }
   }
@@ -102,7 +104,7 @@ export default function Interact() {
         </span>
       </div>
       <div className={styles.inputArea(navbarBackgroundColor)}>
-        <strong className={styles.bodyText(bodyTextColor)}>{">"}</strong>
+        <strong className={styles.bodyText(navbarTextColor)}>{">"}</strong>
         <input
           className={styles.inputBox(navbarTextColor)}
           onChange={() => null}
