@@ -22,3 +22,7 @@ comments.txt
 
 # Don't need images directory (used only for report)
 Images/
+
+# Don't commit public/private key for SSH
+private.ppk
+public
