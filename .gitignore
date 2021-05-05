@@ -7,7 +7,7 @@ front/dist/
 # Don't want 1.3GB AI model on github
 checkpoint/
 
-# Don't want node dependencies (user installs this on their end)
+# Don't want node dependencies
 front/node_modules/
 
 # Don't need to include gpt2 model download (should be done on user's end)
@@ -24,8 +24,7 @@ comments.txt
 Images/
 
 # Don't commit public/private key for SSH
-private.ppk
-public
+gcloud.ppk
 
 # Don't commit nohup.out files
 *.out
