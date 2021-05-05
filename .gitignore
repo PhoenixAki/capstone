@@ -26,3 +26,6 @@ Images/
 # Don't commit public/private key for SSH
 private.ppk
 public
+
+# Don't commit nohup.out files
+*.out

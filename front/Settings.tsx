@@ -88,49 +88,49 @@ export default function Settings() {
       <Setting
         type="color"
         value={bodyBackgroundColor}
-        label="Body Background Color Picker"
+        label="Background Color"
         onChange={setBodyBackgroundColor}
         echoReply={false}
       />
       <Setting
         type="color"
         value={navbarBackgroundColor}
-        label="Navbar/Message Input Background Color Picker"
+        label="Navbar Background Color"
         onChange={setNavbarBackgroundColor}
         echoReply={false}
       />
       <Setting
         type="color"
         value={navbarHoverColor}
-        label="Navbar Hover Color Picker"
+        label="Navbar Link Hover Color"
         onChange={setNavbarHoverColor}
         echoReply={false}
       />
       <Setting
         type="color"
         value={navbarTextColor}
-        label="Navbar Text Color Picker"
+        label="Navbar Text Color"
         onChange={setNavbarTextColor}
         echoReply={false}
       />
       <Setting
         type="color"
         value={bodyTextColor}
-        label="Body Text Color Picker"
+        label="Body Text Color"
         onChange={setBodyTextColor}
         echoReply={false}
       />
       <Setting
         type="text"
         value={fontFamily}
-        label="Font Family"
+        label="Font"
         onChange={setFontFamily}
         echoReply={false}
       />
       <Setting
         type="checkbox"
         value=""
-        label="Server Echo Replies?"
+        label="Server Echo Reply"
         onChange={setEchoReply}
         echoReply={echoReply}
       />

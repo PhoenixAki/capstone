@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "serve": "parcel index.html"
+    "dev": "parcel index.html",
+    "live": "parcel index.html --host 0.0.0.0 --no-hmr",
+    "live-nohup": "nohup parcel index.html --host 0.0.0.0 --no-hmr &"
   },
   "dependencies": {
     "@emotion/css": "^11.1.3",

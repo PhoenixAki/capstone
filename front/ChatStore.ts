@@ -34,7 +34,7 @@ export function sendMessage(
 }
 
 export function requestChatResponse(message: ChatMessage) {
-  fetch("http://localhost:5000/", {
+  fetch("http://35.226.227.207:5000/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message }),
