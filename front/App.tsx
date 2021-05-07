@@ -19,8 +19,8 @@ const styles = {
     height: 100%;
   `,
   body: (bodyBackgroundColor: string, fontFamily: string) => css`
-    background-color: ${bodyBackgroundColor};
-    font-family: ${fontFamily};
+    background-color: ${bodyBackgroundColor}; //ensures setting is used
+    font-family: ${fontFamily}; //ensurse setting is used
   `,
 };
 
@@ -30,6 +30,12 @@ export default function App() {
     state.fontFamily,
   ]);
 
+  /*
+   * Return:
+   * Helmet is to override the body styling from style.css with whatever the setting currently is
+   * Render Navbar at top of window regardless of what URL
+   * Render Interact/Settings/About underneath depending on what URL
+   */
   return (
     <Router history={BrowserHistory}>
       <Helmet>

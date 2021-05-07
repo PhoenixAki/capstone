@@ -8,18 +8,18 @@ type SettingStoreState = {
   navbarTextColor: string; //color of text on navbar links
   bodyTextColor: string; //color of message text
   fontFamily: string; //text font across the pages
-  echoReply: boolean;
+  echoReply: boolean; //used to specify an echo reply from the server
 };
 
 const initialState: SettingStoreState = {
-  username: "Sean",
-  bodyBackgroundColor: "#000000",
-  navbarBackgroundColor: "#282828",
-  navbarHoverColor: "#007D00",
-  navbarTextColor: "#FFFFFF",
-  bodyTextColor: "#FFFFFF",
-  fontFamily: "sans-serif",
-  echoReply: false,
+  username: "User" + Math.floor(Math.random() * 101), //username with random numbers at the end by default
+  bodyBackgroundColor: "#000000", //default to black
+  navbarBackgroundColor: "#282828", //default to grey
+  navbarHoverColor: "#007D00", //default to green
+  navbarTextColor: "#FFFFFF", //default to white
+  bodyTextColor: "#FFFFFF", //default to white
+  fontFamily: "sans-serif", //default to sans-serif, any other valid name should work
+  echoReply: false, //default to false
 };
 
 export const useSettingStore = create(() => initialState);

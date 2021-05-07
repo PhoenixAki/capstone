@@ -15,13 +15,13 @@ import {
 
 const styles = {
   setting: css`
-    padding: 8px 16px;
+    padding: 8px 16px; //8px top-bottom, 16px left-right
   `,
   list: (bodyTextColor: string) => css`
-    color: ${bodyTextColor};
-    background-color: rgb(50, 50, 50);
+    color: ${bodyTextColor}; //ensures setting is used
+    background-color: rgb(50, 50, 50); //set default color to (50, 50, 50)
     li:nth-child(odd) {
-      background-color: rgb(60, 60, 60);
+      background-color: rgb(60, 60, 60); //ever other element will be (60, 60, 60) instead
     }
   `,
   settingLabel: css`
@@ -30,6 +30,7 @@ const styles = {
   `,
 };
 
+//Custom type to simplify Setting function
 type SettingProps = {
   label: string;
   type: string;
@@ -39,7 +40,12 @@ type SettingProps = {
 };
 
 function Setting(props: SettingProps) {
-  const { label, type, value, onChange, echoReply } = props;
+  const { label, type, value, onChange, echoReply } = props; //extract values from props
+
+  /*
+   * Return:
+   * Each returned value is an <li> tag containing the name of the setting and an input to change it
+   */
   return (
     <li className={styles.setting}>
       <span className={styles.settingLabel}>{label}:</span>
@@ -76,6 +82,11 @@ export default function Settings() {
     state.echoReply,
   ]);
 
+  /*
+   * Return:
+   * <ul> that holds individual Setting components (which are essentially <li> elements)
+   * See above for what the Setting component function does
+   */
   return (
     <ul className={styles.list(bodyTextColor)}>
       <Setting

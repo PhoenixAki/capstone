@@ -5,15 +5,15 @@ import { useSettingStore } from "./SettingStore";
 
 const styles = {
   container: (bodyTextColor: string) => css`
-    color: ${bodyTextColor};
-    margin: 14px 16px;
+    color: ${bodyTextColor}; //ensures setting is used
+    margin: 14px 16px; //14px top-bottom, 16px left-right
   `,
   heading: css`
-    display: block;
+    display: block; //give headings extra space around them
     margin-top: 16px;
   `,
   text: css`
-    display: block;
+    display: block; //give text areas extra space around them
     padding: 25px;
   `,
   pageList: css`
@@ -24,6 +24,12 @@ const styles = {
 
 export default function About() {
   const [bodyTextColor] = useSettingStore((state) => [state.bodyTextColor]);
+
+  /*
+   * Return:
+   * Page is pretty static, as in there is anything besides HTML and CSS styling
+   * Mixture of <span> for text areas and <ul> for listing the page features
+   */
   return (
     <div className={styles.container(bodyTextColor)}>
       <strong className={styles.heading}>About this Website</strong>

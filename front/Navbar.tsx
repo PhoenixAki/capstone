@@ -7,29 +7,29 @@ import { useSettingStore } from "./SettingStore";
 
 const styles = {
   navbar: (navbarBackgroundColor: string) => css`
-    position: fixed; /* Keeps bar up top */
+    position: fixed; //keeps navbar up top
     height: 68px;
-    width: 100%; /* Take up entire width of page */
-    list-style-type: none; /* Removes markers */
-    background-color: ${navbarBackgroundColor}; /* Dynamically update with the setting */
+    width: 100%; //take up entire width of page
+    list-style-type: none; //removes markers
+    background-color: ${navbarBackgroundColor}; //ensures setting is used
   `,
   li: css`
-    float: left; /* Makes entries horizontal vs. vertical */
+    float: left; //makes entries horizontal vs. vertical
     &:last-child {
-      float: right; /* Pushes last child to right edge */
+      float: right; //pushes last child to right edge
     }
   `,
   link: (navbarHoverColor: string, navbarTextColor: string) => css`
-    display: block; /* Gives space around each link */
-    color: ${navbarTextColor}; /* color doesn't inherit from default body color */
-    padding: 14px 16px; /* 14px top-bottom, 16px left-right */
-    text-decoration: none; /* Removes underline on link */
+    display: block; //gives space around each link
+    color: ${navbarTextColor}; //color doesn't inherit from default body color
+    padding: 14px 16px; //14px top-bottom, 16px left-right
+    text-decoration: none; //removes underline on link
     &:hover {
-      background-color: ${navbarHoverColor};
+      background-color: ${navbarHoverColor}; //ensures setting is used
     }
   `,
   active: (navbarHoverColor: string) => css`
-    background-color: ${navbarHoverColor}; /* keep hover color when page is active */
+    background-color: ${navbarHoverColor}; //keep hover color when page is active
   `,
 };
 
@@ -40,6 +40,11 @@ export default function Navbar() {
     state.navbarTextColor,
   ]);
 
+  /*
+   * Return:
+   * <ul> that holds the individual NavLink components
+   * render set of 3 NavLink components that link to other pages and have dynamic styling
+   */
   return (
     <ul className={styles.navbar(navbarBackgroundColor)}>
       <li className={styles.li}>
